@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Beautiful Soul 🌙</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pink: #f4b8c8;
+  --pink-deep: #e8889e;
+  --lavender: #c8b4e8;
+  --lavender-soft: #e8dff8;
+  --blue: #b4d0e8;
+  --cream: #fef8f0;
+  --silver: #d8dce8;
+  --white: #ffffff;
+  --moon: #fff8e8;
+  --glow: rgba(200,180,232,0.35);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Jost', sans-serif;
+  background: #0a0614;
+  color: var(--cream);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ─── CURSOR ─── */
+.cursor {
+  position: fixed;
+  width: 14px; height: 14px;
+  background: radial-gradient(circle, #f4b8c8, #c8b4e8);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%,-50%);
+  transition: transform 0.08s ease, width 0.2s, height 0.2s;
+  mix-blend-mode: screen;
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(200,180,232,0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%,-50%);
+  transition: transform 0.18s ease, width 0.3s, height 0.3s, opacity 0.3s;
+}
+
+/* ─── LOADING ─── */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #0a0614;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  transition: opacity 1.2s ease, visibility 1.2s;
+}
+
+#loader.hidden { opacity: 0; visibility: hidden; }
+
+.loader-moon {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff8e8, #f4c878, #c89830);
+  box-shadow:
+    0 0 40px 20px rgba(244,200,120,0.25),
+    0 0 80px 40px rgba(200,160,80,0.12),
+    inset -12px -8px 0 rgba(160,120,40,0.15);
+  animation: moonPulseLoad 2s ease-in-out infinite;
+}
+
+@keyframes moonPulseLoad {
+  0%,100% { box-shadow: 0 0 40px 20px rgba(244,200,120,0.25), 0 0 80px 40px rgba(200,160,80,0.12), inset -12px -8px 0 rgba(160,120,40,0.15); }
+  50% { box-shadow: 0 0 60px 30px rgba(244,200,120,0.4), 0 0 120px 60px rgba(200,160,80,0.2), inset -12px -8px 0 rgba(160,120,40,0.15); }
+}
+
+.loader-text {
+  font-family: 'Great Vibes', cursive;
+  font-size: 28px;
+  color: var(--lavender);
+  opacity: 0;
+  animation: fadeInLoader 1s ease 0.5s forwards;
+  letter-spacing: 2px;
+}
+
+@keyframes fadeInLoader { to { opacity: 1; } }
+
+.loader-dots {
+  display: flex; gap: 8px;
+}
+
+.loader-dots span {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--pink);
+  animation: dotPulse 1.4s ease-in-out infinite;
+}
+.loader-dots span:nth-child(2) { animation-delay: 0.2s; background: var(--lavender); }
+.loader-dots span:nth-child(3) { animation-delay: 0.4s; background: var(--blue); }
+
+@keyframes dotPulse {
+  0%,80%,100% { transform: scale(0.6); opacity: 0.4; }
+  40% { transform: scale(1.2); opacity: 1; }
+}
+
+/* ─── CANVAS / PARTICLES ─── */
+#starCanvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ─── MUSIC BTN ─── */
+#musicBtn {
+  position: fixed;
+  top: 20px; right: 20px;
+  z-index: 1000;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(200,180,232,0.3);
+  border-radius: 50px;
+  padding: 10px 18px;
+  color: var(--lavender);
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: none;
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#musicBtn:hover {
+  background: rgba(200,180,232,0.15);
+  border-color: var(--lavender);
+  transform: scale(1.05);
+}
+
+.music-icon { font-size: 14px; animation: musicAnim 1.5s ease infinite; }
+@keyframes musicAnim {
+  0%,100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(-10deg) scale(1.15); }
+}
+
+/* ─── HEART CURSOR TRAIL ─── */
+.heart-trail {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9997;
+  font-size: 14px;
+  animation: heartFly 1.2s ease forwards;
+  transform: translate(-50%,-50%);
+}
+
+@keyframes heartFly {
+  0% { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -120%) scale(0.5); }
+}
+
+/* ─── SECTIONS COMMON ─── */
+section {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── HERO ─── */
+#hero {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(200,180,232,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 80% 20%, rgba(180,208,232,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 30% at 20% 80%, rgba(244,184,200,0.1) 0%, transparent 60%),
+    linear-gradient(180deg, #0a0614 0%, #100820 40%, #0c0c1e 100%);
+}
+
+.hero-moon-wrap {
+  position: relative;
+  margin-bottom: 48px;
+}
+
+.hero-moon {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 32%, #fffdf0, #ffe8a0, #f4c84a, #c89830);
+  box-shadow:
+    0 0 60px 30px rgba(244,200,80,0.2),
+    0 0 120px 60px rgba(200,160,60,0.1),
+    inset -18px -12px 0 rgba(160,120,30,0.12);
+  animation: moonFloat 6s ease-in-out infinite, moonGlow 4s ease-in-out infinite;
+  position: relative;
+}
+
+@keyframes moonFloat {
+  0%,100% { transform: translateY(0px); }
+  50% { transform: translateY(-16px); }
+}
+
+@keyframes moonGlow {
+  0%,100% { box-shadow: 0 0 60px 30px rgba(244,200,80,0.2), 0 0 120px 60px rgba(200,160,60,0.1), inset -18px -12px 0 rgba(160,120,30,0.12); }
+  50% { box-shadow: 0 0 90px 45px rgba(244,200,80,0.35), 0 0 180px 90px rgba(200,160,60,0.18), inset -18px -12px 0 rgba(160,120,30,0.12); }
+}
+
+.moon-ring {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  border: 1px solid rgba(244,200,120,0.2);
+  animation: ringPulse 4s ease-in-out infinite;
+}
+
+.moon-ring-2 {
+  position: absolute;
+  inset: -38px;
+  border-radius: 50%;
+  border: 1px solid rgba(244,200,120,0.1);
+  animation: ringPulse 4s ease-in-out 0.8s infinite;
+}
+
+@keyframes ringPulse {
+  0%,100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.06); opacity: 0.2; }
+}
+
+.hero-content { text-align: center; max-width: 700px; }
+
+.hero-tag {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--lavender);
+  background: rgba(200,180,232,0.1);
+  border: 1px solid rgba(200,180,232,0.2);
+  border-radius: 50px;
+  padding: 6px 20px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(8px);
+}
+
+.hero-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(48px, 10vw, 90px);
+  background: linear-gradient(135deg, #f4b8c8 0%, #e8dff8 40%, #b4d0e8 70%, #f4c878 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.15;
+  margin-bottom: 8px;
+  animation: titleShimmer 6s ease-in-out infinite;
+}
+
+@keyframes titleShimmer {
+  0%,100% { filter: brightness(1) drop-shadow(0 0 20px rgba(200,180,232,0.3)); }
+  50% { filter: brightness(1.15) drop-shadow(0 0 40px rgba(200,180,232,0.6)); }
+}
+
+.hero-name {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(32px, 7vw, 60px);
+  color: var(--pink);
+  text-shadow: 0 0 30px rgba(244,184,200,0.6), 0 0 60px rgba(244,184,200,0.3);
+  margin-bottom: 20px;
+  animation: nameGlow 3s ease-in-out infinite;
+}
+
+@keyframes nameGlow {
+  0%,100% { text-shadow: 0 0 30px rgba(244,184,200,0.6), 0 0 60px rgba(244,184,200,0.3); }
+  50% { text-shadow: 0 0 50px rgba(244,184,200,0.9), 0 0 100px rgba(244,184,200,0.5); }
+}
+
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(16px, 3vw, 22px);
+  font-weight: 300;
+  color: rgba(232,223,248,0.8);
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0 auto 40px;
+}
+
+/* Typewriter */
+.typewriter-wrap {
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.typewriter-text {
+  font-size: 14px;
+  letter-spacing: 3px;
+  color: var(--silver);
+  font-weight: 200;
+  text-transform: uppercase;
+}
+
+.tw-cursor {
+  display: inline-block;
+  width: 2px; height: 16px;
+  background: var(--lavender);
+  margin-left: 4px;
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Cake */
+.hero-cake {
+  font-size: 56px;
+  margin: 32px 0 0;
+  display: inline-block;
+  animation: cakeWiggle 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(244,184,200,0.5));
+}
+
+@keyframes cakeWiggle {
+  0%,100% { transform: rotate(-3deg) scale(1); }
+  50% { transform: rotate(3deg) scale(1.08); }
+}
+
+/* Scroll hint */
+.scroll-hint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(200,180,232,0.5);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.scroll-line {
+  width: 1px; height: 50px;
+  background: linear-gradient(to bottom, rgba(200,180,232,0.5), transparent);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+
+@keyframes scrollLine {
+  0% { transform: scaleY(0); transform-origin: top; opacity: 0; }
+  40% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+  60% { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+  100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+}
+
+/* ─── DIVIDER ─── */
+.section-divider {
+  width: 100%;
+  max-width: 400px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(200,180,232,0.4), rgba(244,184,200,0.4), transparent);
+  margin: 0 auto 60px;
+}
+
+.section-label {
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: rgba(200,180,232,0.5);
+  margin-bottom: 16px;
+  display: block;
+  text-align: center;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 300;
+  text-align: center;
+  color: var(--cream);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--lavender);
+}
+
+.section-sub {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 200;
+  color: rgba(216,220,232,0.6);
+  letter-spacing: 1px;
+  margin-bottom: 56px;
+  max-width: 400px;
+}
+
+/* ─── MEMORY ─── */
+#memories {
+  background:
+    radial-gradient(ellipse 50% 60% at 20% 50%, rgba(200,180,232,0.06) 0%, transparent 70%),
+    linear-gradient(180deg, #0c0c1e, #0e0a1a, #0a0614);
+}
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  max-width: 900px;
+  width: 100%;
+}
+
+.memory-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(200,180,232,0.12);
+  backdrop-filter: blur(16px);
+  padding: 40px 28px;
+  text-align: center;
+  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s ease, border-color 0.4s ease;
+  cursor: none;
+}
+
+.memory-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(244,184,200,0.04), rgba(200,180,232,0.06), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.memory-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(200,180,232,0.15), 0 0 80px rgba(244,184,200,0.08);
+  border-color: rgba(200,180,232,0.3);
+}
+
+.memory-card:hover::before { opacity: 1; }
+
+.memory-emoji {
+  font-size: 48px;
+  margin-bottom: 20px;
+  display: block;
+  animation: floatEmoji 4s ease-in-out infinite;
+}
+
+@keyframes floatEmoji {
+  0%,100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-8px) rotate(3deg); }
+}
+
+.memory-card:nth-child(2) .memory-emoji { animation-delay: 0.5s; }
+.memory-card:nth-child(3) .memory-emoji { animation-delay: 1s; }
+
+.memory-caption {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--cream);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.memory-sub {
+  font-size: 12px;
+  color: rgba(200,180,232,0.5);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ─── MOON ─── */
+#moon-section {
+  background: linear-gradient(180deg, #0a0614 0%, #080412 50%, #0c0818 100%);
+  overflow: hidden;
+}
+
+.big-moon-wrap {
+  position: relative;
+  margin-bottom: 60px;
+}
+
+.big-moon {
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 36% 30%, #fffef5, #fff8d0, #f4e090, #d4a840);
+  box-shadow:
+    0 0 80px 40px rgba(244,220,100,0.2),
+    0 0 160px 80px rgba(200,170,60,0.1),
+    0 0 240px 120px rgba(180,140,40,0.05),
+    inset -30px -20px 0 rgba(160,120,30,0.1);
+  animation: bigMoonGlow 6s ease-in-out infinite, bigMoonFloat 8s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes bigMoonGlow {
+  0%,100% { box-shadow: 0 0 80px 40px rgba(244,220,100,0.2), 0 0 160px 80px rgba(200,170,60,0.1), 0 0 240px 120px rgba(180,140,40,0.05), inset -30px -20px 0 rgba(160,120,30,0.1); }
+  50% { box-shadow: 0 0 120px 60px rgba(244,220,100,0.35), 0 0 240px 120px rgba(200,170,60,0.18), 0 0 400px 200px rgba(180,140,40,0.08), inset -30px -20px 0 rgba(160,120,30,0.1); }
+}
+
+@keyframes bigMoonFloat {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.moon-crater {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(180,140,40,0.12);
+}
+
+.moon-quotes {
+  max-width: 600px;
+  text-align: center;
+}
+
+.moon-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(18px, 3vw, 26px);
+  font-weight: 300;
+  color: rgba(255,248,230,0.85);
+  line-height: 1.7;
+  margin-bottom: 24px;
+  padding: 28px 32px;
+  border-left: 2px solid rgba(244,200,120,0.3);
+  background: rgba(255,248,200,0.03);
+  border-radius: 0 12px 12px 0;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.moon-quote:hover {
+  border-left-color: rgba(244,200,120,0.7);
+  background: rgba(255,248,200,0.06);
+  transform: translateX(6px);
+}
+
+.moon-quote span {
+  display: block;
+  font-family: 'Jost', sans-serif;
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: rgba(200,180,232,0.4);
+  text-transform: uppercase;
+  margin-top: 12px;
+}
+
+/* ─── WISHES ─── */
+#wishes {
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 30%, rgba(244,184,200,0.06) 0%, transparent 70%),
+    linear-gradient(180deg, #0c0818, #0a0614, #0c0c1e);
+}
+
+.wishes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 920px;
+  width: 100%;
+}
+
+.wish-card {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(200,180,232,0.1);
+  border-radius: 20px;
+  padding: 36px 28px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: none;
+}
+
+.wish-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--pink), var(--lavender), var(--blue));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+
+.wish-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(200,180,232,0.25);
+  box-shadow: 0 20px 50px rgba(200,180,232,0.12);
+}
+
+.wish-card:hover::after { transform: scaleX(1); }
+
+.wish-icon {
+  font-size: 36px;
+  margin-bottom: 18px;
+  display: block;
+}
+
+.wish-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.wish-tag {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--lavender);
+  opacity: 0.6;
+}
+
+/* ─── INTERACTIVE ─── */
+.star-click-zone {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 200px;
+  cursor: none;
+  margin-bottom: 40px;
+}
+
+.clickable-star {
+  position: absolute;
+  font-size: 24px;
+  cursor: none;
+  transition: transform 0.3s ease;
+  animation: starFloat 4s ease-in-out infinite;
+  user-select: none;
+}
+
+.clickable-star:hover { transform: scale(1.4) rotate(20deg); }
+
+.star-hint {
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: rgba(200,180,232,0.4);
+  text-transform: uppercase;
+}
+
+.star-pop {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  font-size: 20px;
+  animation: starPop 0.8s ease forwards;
+  transform: translate(-50%,-50%);
+}
+
+@keyframes starPop {
+  0% { opacity: 1; transform: translate(-50%,-50%) scale(0.5); }
+  50% { transform: translate(-50%,-80%) scale(1.4); opacity: 1; }
+  100% { transform: translate(-50%,-120%) scale(0.8); opacity: 0; }
+}
+
+/* Butterfly */
+.butterfly {
+  position: fixed;
+  font-size: 22px;
+  pointer-events: none;
+  z-index: 5;
+  animation: butterflyPath 20s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes butterflyPath {
+  0% { transform: translate(-100px, 60vh) rotate(0deg); opacity: 0; }
+  5% { opacity: 0.7; }
+  25% { transform: translate(30vw, 30vh) rotate(10deg); }
+  50% { transform: translate(60vw, 50vh) rotate(-10deg); }
+  75% { transform: translate(80vw, 25vh) rotate(15deg); }
+  95% { opacity: 0.7; }
+  100% { transform: translate(110vw, 45vh) rotate(0deg); opacity: 0; }
+}
+
+/* ─── ENDING ─── */
+#ending {
+  background:
+    radial-gradient(ellipse 60% 60% at 50% 50%, rgba(200,180,232,0.1) 0%, transparent 70%),
+    linear-gradient(180deg, #0c0c1e, #0a0614);
+  text-align: center;
+}
+
+.ending-moon {
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 36% 32%, #fffef5, #fff8d0, #f4e090, #d4a840);
+  box-shadow: 0 0 60px 30px rgba(244,220,100,0.25), 0 0 120px 60px rgba(200,170,60,0.12), inset -14px -10px 0 rgba(160,120,30,0.12);
+  margin: 0 auto 40px;
+  animation: moonFloat 6s ease-in-out infinite, moonGlow 4s ease-in-out infinite;
+}
+
+.ending-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(32px, 6vw, 56px);
+  background: linear-gradient(135deg, #f4b8c8, #e8dff8, #f4c878);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.3;
+  margin-bottom: 24px;
+}
+
+.ending-body {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(16px, 2.5vw, 22px);
+  font-weight: 300;
+  color: rgba(232,223,248,0.75);
+  max-width: 500px;
+  line-height: 1.8;
+  margin-bottom: 48px;
+}
+
+.made-with {
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(200,180,232,0.35);
+  margin-top: 60px;
+}
+
+/* Confetti canvas */
+#confettiCanvas {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  pointer-events: none;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 600px) {
+  #musicBtn { top: 14px; right: 14px; padding: 8px 14px; font-size: 10px; }
+  .memory-grid, .wishes-grid { grid-template-columns: 1fr; }
+  .moon-quote { padding: 20px 20px; font-size: 17px; }
+  .big-moon { width: 140px; height: 140px; }
+  section { padding: 60px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="loader-moon"></div>
+  <div class="loader-text">A moment for her…</div>
+  <div class="loader-dots"><span></span><span></span><span></span></div>
+</div>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Confetti canvas -->
+<canvas id="confettiCanvas"></canvas>
+
+<!-- Stars / particles -->
+<canvas id="starCanvas"></canvas>
+
+<!-- Butterflies -->
+<div class="butterfly" style="animation-delay:0s;">🦋</div>
+<div class="butterfly" style="animation-delay:7s; top:0; font-size:16px; animation-duration:26s;">🦋</div>
+<div class="butterfly" style="animation-delay:14s; font-size:14px; animation-duration:22s;">🦋</div>
+
+<!-- Music button -->
+<button id="musicBtn" onclick="toggleMusic()">
+  <span class="music-icon">♪</span>
+  <span id="musicLabel">PLAY MUSIC</span>
+</button>
+
+<!-- Hidden audio -->
+<audio id="bgMusic" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-moon-wrap fade-up visible">
+    <div class="hero-moon">
+      <div style="position:absolute;top:20px;left:30px;width:18px;height:12px;background:rgba(180,140,30,0.12);border-radius:50%;"></div>
+      <div style="position:absolute;top:55px;right:22px;width:12px;height:8px;background:rgba(180,140,30,0.1);border-radius:50%;"></div>
+      <div style="position:absolute;bottom:30px;left:20px;width:8px;height:6px;background:rgba(180,140,30,0.08);border-radius:50%;"></div>
+    </div>
+    <div class="moon-ring"></div>
+    <div class="moon-ring-2"></div>
+  </div>
+
+  <div class="hero-content fade-up visible" style="transition-delay:0.2s;">
+    <div class="hero-tag">✦ a birthday for you ✦</div>
+    <div class="hero-title">Happy Birthday<br>Beautiful Soul 🌙✨</div>
+    <div class="hero-name" id="heroName">My Dearest Friend</div>
+    <p class="hero-sub">You shine softly like the moon and make every moment feel peaceful, warm, and magical.</p>
+    <div class="typewriter-wrap">
+      <span class="typewriter-text" id="twText"></span><span class="tw-cursor"></span>
+    </div>
+    <div class="hero-cake">🎂</div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>scroll</span>
+  </div>
+</section>
+
+<!-- ═══ MEMORIES ═══ -->
+<section id="memories">
+  <span class="section-label">✦ little moments ✦</span>
+  <h2 class="section-title fade-up">A gallery of <em>beautiful memories</em></h2>
+  <p class="section-sub fade-up">Every moment with you is a memory worth keeping forever.</p>
+
+  <div class="memory-grid">
+    <div class="memory-card fade-up">
+      <span class="memory-emoji">🌸</span>
+      <p class="memory-caption">"Your smile is my favorite vibe in the whole world."</p>
+      <span class="memory-sub">✦ always ✦</span>
+    </div>
+    <div class="memory-card fade-up" style="transition-delay:0.15s;">
+      <span class="memory-emoji">🌙</span>
+      <p class="memory-caption">"Every moment with you feels like a beautiful dream."</p>
+      <span class="memory-sub">✦ forever ✦</span>
+    </div>
+    <div class="memory-card fade-up" style="transition-delay:0.3s;">
+      <span class="memory-emoji">🌿</span>
+      <p class="memory-caption">"You bring peace and calm wherever you go."</p>
+      <span class="memory-sub">✦ always ✦</span>
+    </div>
+    <div class="memory-card fade-up" style="transition-delay:0.1s;">
+      <span class="memory-emoji">⭐</span>
+      <p class="memory-caption">"Your laughter is the sound of pure joy."</p>
+      <span class="memory-sub">✦ cherished ✦</span>
+    </div>
+    <div class="memory-card fade-up" style="transition-delay:0.25s;">
+      <span class="memory-emoji">🦋</span>
+      <p class="memory-caption">"You make ordinary days feel like magic."</p>
+      <span class="memory-sub">✦ magical ✦</span>
+    </div>
+    <div class="memory-card fade-up" style="transition-delay:0.4s;">
+      <span class="memory-emoji">💫</span>
+      <p class="memory-caption">"Being your friend is one of life's greatest gifts."</p>
+      <span class="memory-sub">✦ grateful ✦</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MOON ═══ -->
+<section id="moon-section">
+  <span class="section-label">✦ she is moonlight ✦</span>
+  <h2 class="section-title fade-up">Like the <em>Moon</em>, she glows</h2>
+  <p class="section-sub fade-up">Soft. Radiant. Eternal. Beautiful in every phase.</p>
+
+  <div class="big-moon-wrap fade-up">
+    <div class="big-moon"></div>
+  </div>
+
+  <div class="moon-quotes fade-up" style="transition-delay:0.2s;">
+    <div class="moon-quote">
+      "She is like the moon — part of her is always hidden away, glowing softly even in the darkest nights."
+      <span>— for you, always</span>
+    </div>
+    <div class="moon-quote">
+      "Even the stars pause to admire when someone like her lights up the sky."
+      <span>— a universe of love</span>
+    </div>
+    <div class="moon-quote">
+      "She doesn't need to be loud — her presence alone fills every room with warmth and grace."
+      <span>— your quiet magic</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WISHES ═══ -->
+<section id="wishes">
+  <span class="section-label">✦ from heart to heart ✦</span>
+  <h2 class="section-title fade-up">Birthday <em>Wishes</em> for you</h2>
+  <p class="section-sub fade-up">With all the love and sincerity in the world.</p>
+
+  <div class="wishes-grid">
+    <div class="wish-card fade-up">
+      <span class="wish-icon">🌟</span>
+      <p class="wish-text">"May your life always shine brighter than the stars above."</p>
+      <span class="wish-tag">light ✦ hope</span>
+    </div>
+    <div class="wish-card fade-up" style="transition-delay:0.1s;">
+      <span class="wish-icon">🌸</span>
+      <p class="wish-text">"Stay happy, beautiful, and at peace with yourself forever."</p>
+      <span class="wish-tag">peace ✦ joy</span>
+    </div>
+    <div class="wish-card fade-up" style="transition-delay:0.2s;">
+      <span class="wish-icon">💫</span>
+      <p class="wish-text">"You are truly one of a kind — the world is better with you in it."</p>
+      <span class="wish-tag">unique ✦ precious</span>
+    </div>
+    <div class="wish-card fade-up" style="transition-delay:0.05s;">
+      <span class="wish-icon">🌙</span>
+      <p class="wish-text">"May every door open gently for you, and every dream find its way to you."</p>
+      <span class="wish-tag">dreams ✦ destiny</span>
+    </div>
+    <div class="wish-card fade-up" style="transition-delay:0.15s;">
+      <span class="wish-icon">🌿</span>
+      <p class="wish-text">"May this year bring you abundance, laughter, and the deepest calm."</p>
+      <span class="wish-tag">abundance ✦ calm</span>
+    </div>
+    <div class="wish-card fade-up" style="transition-delay:0.25s;">
+      <span class="wish-icon">🎀</span>
+      <p class="wish-text">"You deserve every beautiful thing life has to offer — and so much more."</p>
+      <span class="wish-tag">love ✦ blessings</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INTERACTIVE STARS ═══ -->
+<section id="interactive" style="min-height:60vh; background: linear-gradient(180deg, #0c0c1e, #0a0614);">
+  <span class="section-label">✦ touch the stars ✦</span>
+  <h2 class="section-title fade-up">Click the <em>Stars</em></h2>
+  <p class="section-sub fade-up">Every star holds a little wish for you.</p>
+
+  <div class="star-click-zone fade-up" id="starZone"></div>
+  <p class="star-hint fade-up">✦ click any star to release a wish ✦</p>
+</section>
+
+<!-- ═══ ENDING ═══ -->
+<section id="ending">
+  <div class="ending-moon fade-up"></div>
+  <h2 class="ending-title fade-up" style="transition-delay:0.1s;">Thank you for being such<br>a beautiful person 🌸</h2>
+  <p class="ending-body fade-up" style="transition-delay:0.2s;">
+    The world is softer, warmer, and more magical because of you.<br>
+    On your special day and every day — you are deeply loved.
+  </p>
+  <div class="section-divider fade-up" style="transition-delay:0.3s;"></div>
+  <div class="fade-up" style="transition-delay:0.4s;">
+    <div style="font-size: 32px; letter-spacing: 12px; margin-bottom: 20px; animation: heartbeat 2s ease-in-out infinite;">💕 🌸 💕</div>
+    <p class="made-with">Made with ❤️ just for you — Happy Birthday</p>
+  </div>
+</section>
+
+<script>
+// ─── Cursor
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx + 'px';
+  cursor.style.top = my + 'px';
+});
+
+function animRing() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  cursorRing.style.left = rx + 'px';
+  cursorRing.style.top = ry + 'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+
+// ─── Heart trail
+const hearts = ['💖','💗','💕','🌸','✨','⭐','💫'];
+document.addEventListener('click', e => {
+  for (let i = 0; i < 4; i++) {
+    setTimeout(() => {
+      const el = document.createElement('div');
+      el.className = 'heart-trail';
+      el.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+      el.style.left = (e.clientX + (Math.random()-0.5)*40) + 'px';
+      el.style.top = (e.clientY + (Math.random()-0.5)*40) + 'px';
+      el.style.fontSize = (12 + Math.random()*12) + 'px';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 1200);
+    }, i * 80);
+  }
+});
+
+// ─── Loader
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+    launchConfetti();
+    startTypewriter();
+  }, 2200);
+});
+
+// ─── Typewriter
+const twPhrases = [
+  'today is all about you...',
+  'you are so loved...',
+  'happy birthday, dear friend...',
+  'may this day be magical...',
+];
+let twIdx = 0, twChar = 0, twDeleting = false;
+
+function startTypewriter() {
+  const el = document.getElementById('twText');
+  function type() {
+    const phrase = twPhrases[twIdx];
+    if (!twDeleting) {
+      twChar++;
+      el.textContent = phrase.slice(0, twChar);
+      if (twChar === phrase.length) { twDeleting = true; setTimeout(type, 1800); return; }
+    } else {
+      twChar--;
+      el.textContent = phrase.slice(0, twChar);
+      if (twChar === 0) { twDeleting = false; twIdx = (twIdx + 1) % twPhrases.length; }
+    }
+    setTimeout(type, twDeleting ? 40 : 70);
+  }
+  type();
+}
+
+// ─── Stars canvas
+const sc = document.getElementById('starCanvas');
+const sctx = sc.getContext('2d');
+let stars = [], fireflies = [];
+
+function resizeSC() {
+  sc.width = window.innerWidth;
+  sc.height = window.innerHeight;
+}
+resizeSC();
+window.addEventListener('resize', resizeSC);
+
+for (let i = 0; i < 200; i++) {
+  stars.push({
+    x: Math.random(), y: Math.random(),
+    r: Math.random() * 1.5 + 0.3,
+    a: Math.random(),
+    speed: Math.random() * 0.008 + 0.003,
+    phase: Math.random() * Math.PI * 2,
+    color: ['#ffffff','#e8dff8','#b4d0e8','#f4b8c8'][Math.floor(Math.random()*4)]
+  });
+}
+
+for (let i = 0; i < 18; i++) {
+  fireflies.push({
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * window.innerHeight,
+    vx: (Math.random()-0.5)*0.6,
+    vy: (Math.random()-0.5)*0.6,
+    r: Math.random() * 2.5 + 1,
+    a: Math.random(),
+    phase: Math.random() * Math.PI * 2,
+    speed: Math.random() * 0.02 + 0.01
+  });
+}
+
+let frameN = 0;
+function animStars() {
+  frameN++;
+  sctx.clearRect(0, 0, sc.width, sc.height);
+
+  stars.forEach(s => {
+    s.phase += s.speed;
+    const alpha = s.a * (0.5 + 0.5 * Math.sin(s.phase));
+    sctx.beginPath();
+    sctx.arc(s.x * sc.width, s.y * sc.height, s.r, 0, Math.PI*2);
+    sctx.fillStyle = s.color;
+    sctx.globalAlpha = alpha;
+    sctx.fill();
+  });
+
+  fireflies.forEach(f => {
+    f.phase += f.speed;
+    f.x += f.vx + Math.sin(f.phase * 0.7) * 0.4;
+    f.y += f.vy + Math.cos(f.phase * 0.5) * 0.3;
+    if (f.x < 0) f.x = sc.width;
+    if (f.x > sc.width) f.x = 0;
+    if (f.y < 0) f.y = sc.height;
+    if (f.y > sc.height) f.y = 0;
+    const alpha = 0.3 + 0.7 * Math.abs(Math.sin(f.phase));
+    const grad = sctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r * 3);
+    grad.addColorStop(0, 'rgba(200,230,180,0.9)');
+    grad.addColorStop(1, 'rgba(180,220,160,0)');
+    sctx.beginPath();
+    sctx.arc(f.x, f.y, f.r * 3, 0, Math.PI*2);
+    sctx.fillStyle = grad;
+    sctx.globalAlpha = alpha * 0.6;
+    sctx.fill();
+    sctx.beginPath();
+    sctx.arc(f.x, f.y, f.r * 0.6, 0, Math.PI*2);
+    sctx.fillStyle = '#dfffcc';
+    sctx.globalAlpha = alpha;
+    sctx.fill();
+  });
+
+  sctx.globalAlpha = 1;
+  requestAnimationFrame(animStars);
+}
+animStars();
+
+// ─── Confetti
+const cc = document.getElementById('confettiCanvas');
+const cctx = cc.getContext('2d');
+cc.width = window.innerWidth;
+cc.height = window.innerHeight;
+let confettis = [];
+let confettiActive = false;
+
+function launchConfetti() {
+  cc.width = window.innerWidth;
+  cc.height = window.innerHeight;
+  confettiActive = true;
+  const colors = ['#f4b8c8','#c8b4e8','#b4d0e8','#fef8f0','#f4c878','#e8889e','#d4b8f8'];
+  for (let i = 0; i < 120; i++) {
+    confettis.push({
+      x: Math.random() * cc.width,
+      y: -20 - Math.random() * 200,
+      vx: (Math.random()-0.5)*3,
+      vy: 2 + Math.random()*4,
+      rot: Math.random()*360,
+      rSpeed: (Math.random()-0.5)*6,
+      w: 6 + Math.random()*10,
+      h: 4 + Math.random()*6,
+      color: colors[Math.floor(Math.random()*colors.length)],
+      alpha: 1,
+      shape: Math.random() > 0.5 ? 'rect' : 'circle'
+    });
+  }
+  animConfetti();
+}
+
+function animConfetti() {
+  if (!confettiActive) return;
+  cctx.clearRect(0, 0, cc.width, cc.height);
+  confettis = confettis.filter(c => c.alpha > 0.01);
+  confettis.forEach(c => {
+    c.x += c.vx;
+    c.y += c.vy;
+    c.rot += c.rSpeed;
+    c.vy += 0.05;
+    if (c.y > cc.height * 0.6) c.alpha -= 0.01;
+    cctx.save();
+    cctx.globalAlpha = c.alpha;
+    cctx.translate(c.x, c.y);
+    cctx.rotate(c.rot * Math.PI/180);
+    cctx.fillStyle = c.color;
+    if (c.shape === 'rect') {
+      cctx.fillRect(-c.w/2, -c.h/2, c.w, c.h);
+    } else {
+      cctx.beginPath();
+      cctx.arc(0, 0, c.w/2, 0, Math.PI*2);
+      cctx.fill();
+    }
+    cctx.restore();
+  });
+  if (confettis.length > 0) requestAnimationFrame(animConfetti);
+  else { cctx.clearRect(0,0,cc.width,cc.height); confettiActive = false; }
+}
+
+// ─── Scroll fade-in
+const fadeEls = document.querySelectorAll('.fade-up');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.12 });
+fadeEls.forEach(el => { if (!el.classList.contains('visible')) obs.observe(el); });
+
+// ─── Clickable stars
+const starZone = document.getElementById('starZone');
+const starEmojis = ['⭐','🌟','✨','💫','🌙','🌸','💖'];
+const starWishes = [
+  'May all your dreams come true! 🌟',
+  'You deserve every happiness 💖',
+  'Stars are shining just for you ✨',
+  'Wishing you endless joy 🌸',
+  'You are magic itself 💫',
+  'Peace and love always 🌙',
+  'Happy Birthday, star! ⭐'
+];
+
+for (let i = 0; i < 12; i++) {
+  const s = document.createElement('div');
+  s.className = 'clickable-star';
+  s.textContent = starEmojis[Math.floor(Math.random()*starEmojis.length)];
+  s.style.left = (5 + Math.random()*88) + '%';
+  s.style.top = (5 + Math.random()*80) + '%';
+  s.style.animationDelay = (Math.random()*4) + 's';
+  s.style.animationDuration = (3+Math.random()*3) + 's';
+  s.addEventListener('click', function(e) {
+    const pop = document.createElement('div');
+    pop.className = 'star-pop';
+    pop.textContent = starWishes[Math.floor(Math.random()*starWishes.length)];
+    pop.style.left = e.clientX + 'px';
+    pop.style.top = e.clientY + 'px';
+    pop.style.fontSize = '14px';
+    pop.style.background = 'rgba(200,180,232,0.15)';
+    pop.style.backdropFilter = 'blur(8px)';
+    pop.style.border = '1px solid rgba(200,180,232,0.3)';
+    pop.style.borderRadius = '20px';
+    pop.style.padding = '8px 16px';
+    pop.style.whiteSpace = 'nowrap';
+    pop.style.color = '#e8dff8';
+    document.body.appendChild(pop);
+    setTimeout(() => pop.remove(), 900);
+    this.style.transform = 'scale(1.8) rotate(30deg)';
+    setTimeout(() => this.style.transform = '', 400);
+  });
+  starZone.appendChild(s);
+}
+
+// ─── Music
+let playing = false;
+const audio = document.getElementById('bgMusic');
+audio.volume = 0.35;
+
+function toggleMusic() {
+  if (playing) {
+    audio.pause();
+    document.getElementById('musicLabel').textContent = 'PLAY MUSIC';
+    document.querySelector('.music-icon').textContent = '♪';
+  } else {
+    audio.play().catch(() => {});
+    document.getElementById('musicLabel').textContent = 'PAUSE';
+    document.querySelector('.music-icon').textContent = '♫';
+  }
+  playing = !playing;
+}
+
+// ─── Heartbeat style
+const hbStyle = document.createElement('style');
+hbStyle.textContent = `@keyframes heartbeat{0%,100%{transform:scale(1)}14%{transform:scale(1.3)}28%{transform:scale(1)}42%{transform:scale(1.2)}56%{transform:scale(1)}} @keyframes starFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}`;
+document.head.appendChild(hbStyle);
+</script>
+</body>
+</html>
